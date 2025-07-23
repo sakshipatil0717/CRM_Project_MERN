@@ -34,7 +34,7 @@ Key Features
 
 **1. Clone the Repository**
 ```bash
-git clone https://github.com/nehadesai2424/CRM_MERN_Project.git
+git clone https://github.com/sakshipatil0717/CRM_MERN_Project.git
 cd CRM_MERN_Project
 
 
