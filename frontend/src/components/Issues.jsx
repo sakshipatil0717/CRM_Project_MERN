@@ -43,6 +43,8 @@ function Issues() {
         });
     };
 
+
+
     return (
         <>
             {/* <h1>Issues</h1> */}
@@ -54,14 +56,14 @@ function Issues() {
                     <h1>Customers Issues</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href=" ">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item active">Customers Issues</li>
                         </ol>
 
 
                         <div class="d-flex justify-content-end align-items-center">
                             <Link to={'/customerissues'}>
-                                <button class="btn btn-primary px-4 ms-3 me-4 mt-2"><i class="fa-solid fa-plus"></i> Add Issues</button>
+                                <button class="btn btn-primary px-4 ms-3 me-4"><i class="fa-solid fa-plus"></i> Add Issues</button>
                             </Link>
                         </div>
 
@@ -69,7 +71,7 @@ function Issues() {
                 </div>
 
 
-                <div class="container mt-5">
+                <div class="container mt-4">
                     <div class="card p-3 shadow-sm table-responsive">
                         <table class="table table text-center ">
                             <thead class="bg-light">
@@ -102,8 +104,20 @@ function Issues() {
                                                 {/* <td class="py-3">pending</td> */}
 
                                                 <td class="py-3">
-                                                    <button class="btn btn-sm btn-primary me-2"><i class="fa-solid fa-pencil"></i></button>
-                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    {/* <button class="btn btn-sm btn-primary me-2"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button> */}
+
+
+                                                    <div className="d-flex flex-wrap justify-content-center gap-2">
+                                                        {/* <button onClick={() => handleEdit(eachData._id)} className="btn btn-primary  btn-sm">
+                                                            <i className="fa-solid fa-pencil"></i>
+                                                        </button> */}
+
+                                                        <button onClick={() => handleDelete(eachData._id)} className="btn btn-danger btn-sm" >
+                                                            <i className="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         )

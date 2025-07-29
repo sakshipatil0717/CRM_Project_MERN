@@ -125,7 +125,7 @@ function Sidebar() {
                                     {/* <i class="bi bi-bar-chart"></i> */}
                                     {/* <i class="bi bi-person-exclamation"></i> */}
                                     <i class="bi bi-exclamation-circle"></i>
-                                    
+
                                     <span>Customer Issues</span>
                                 </a>
                             </Link>
@@ -155,40 +155,6 @@ function Sidebar() {
 
                         {/* <li class="nav-heading">Pages</li> */}
 
-                        <li class="nav-item">
-                            <Link to={'/quotations'} class="nav-link collapsed">
-                                {/* <i class="bi bi-person"></i> */}
-                                <i class="bi bi-file-earmark"></i>
-                                <span>Quotation</span>
-                            </Link>
-                        </li>
-                        {/* <!-- End Profile Page Nav --> */}
-
-                        <li class="nav-item">
-                            <Link to={'/quotation-details'} class="nav-link collapsed">
-                                {/* <i class="bi bi-question-circle"></i> */}
-                                {/* <i class="bi bi-file-earmark"></i> */}
-                                <i className="bi bi-file-earmark-text"></i>
-                                <span>Quotation Details</span>
-                            </Link>
-                        </li>
-                        {/* <!-- End F.A.Q Page Nav --> */}
-
-                        <li class="nav-item">
-                            <Link to={'/amc-contracts'} class="nav-link collapsed">
-                                {/* <i class="bi bi-question-circle"></i> */}
-
-                                <i class="bi bi-file-check"></i>
-                                <span>Amc Contracts</span>
-                            </Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link to={'/amc-contracts-details'} class="nav-link collapsed">
-                                {/* <i class="bi bi-question-circle"></i> */}
-                                <i class="bi bi-file-text"></i>
-                                <span>Amc Contracts Details</span>
-                            </Link>
-                        </li>
 
                         {/* <li class="nav-item">
                             <a class="nav-link collapsed" href="pages-contact.html">

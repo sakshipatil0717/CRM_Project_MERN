@@ -1,6 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function Dashboard() {
+    const [customerData, setCustomerData] = useState([]);
+
+    function loadData() {
+        axios.get(process.env.REACT_APP_BASEURL + "/customers")
+            .then((res) => {
+                console.log(res.data);
+                setCustomerData(res.data.data);
+            })
+    };
+    useEffect(() => {
+        loadData();
+    }, []);
+
+
+
     return (
         <>
             {/* <h1>Dashboard</h1> */}
@@ -20,107 +36,158 @@ function Dashboard() {
 
 
                 <div class="container py-4">
-                    {/* <!-- Summary Cards --> */}
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h4 class="mb-1 fw-bold text-muted">Leads</h4>
-                                        <h5 class="mb-0">124</h5>
-                                    </div>
-                                    <i class="fas fa-user-plus fa-2x "></i>
+                    {/* <!-- summary cards --> */}
+                    <div className="row g-4 mb-4">
+                        {/* Leads */}
+                        <div className="col-md-3">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title d-flex justify-content-between align-items-center">
+                                        Leads
+                                        <i className="fas fa-user-plus"></i>
+                                    </h5>
+                                    <p className="card-text fs-4">540</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h4 class="mb-1 fw-bold text-muted">Customers</h4>
-                                        <h5 class="mb-0">87</h5>
-                                    </div>
-                                    <i class="fas fa-users fa-2x"></i>
+
+                        {/* Customers */}
+                        <div className="col-md-3">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title d-flex justify-content-between align-items-center">
+                                        Customers
+                                        <i className="fas fa-user-friends"></i>
+                                    </h5>
+                                    <p className="card-text fs-4">1,040</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h4 class="mb-1 fw-bold text-muted">Revenue</h4>
-                                        <h5 class="mb-0">₹ 24,600</h5>
-                                    </div>
-                                    <i class="fas fa-dollar-sign fa-2x "></i>
+
+                        {/* Revenue */}
+                        <div className="col-md-3">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title d-flex justify-content-between align-items-center">
+                                        Revenue
+                                        <i className="fas fa-rupee-sign"></i>
+                                    </h5>
+                                    <p className="card-text fs-4">₹129,400</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h4 class="mb-1 fw-bold text-muted">Order Closed</h4>
-                                        <h5 class="mb-0">12</h5>
-                                    </div>
-                                    <i class="fas fa-ticket-alt fa-2x text-dark"></i>
+
+                        {/* Orders Closed */}
+                        <div className="col-md-3">
+                            <div className="card mb-3">
+                                <div className="card-body">
+                                    <h5 className="card-title d-flex justify-content-between align-items-center">
+                                        Orders Closed
+                                        <i className="fas fa-check-circle"></i>
+                                    </h5>
+                                    <p className="card-text fs-4">82</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
                     {/* <!-- Tables Row --> */}
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Recent Leads</h5>
-                                    <div class="table-responsive" style={{ maxHeight: '300px' }}>
-                                        <table class="table table-striped table-sm">
-                                            <thead><tr><th>Name</th><th>Email</th><th>Status</th></tr></thead>
+                    <div className="row g-4 mb-4">
+                        <div className="col-md-12">
+                            <div className="card shadow-sm h-100 border-0">
+                                <div className="card-body">
+                                    <h5 className="card-title">Recent Employee</h5>
+                                    <div className="table-responsive" style={{ maxHeight: '300px' }}>
+                                        <table className="table table-striped table-hover align-middle">
+                                            <thead className="table-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Position</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
-                                                <tr><td>John Doe</td><td>john@example.com</td><td><span class="badge bg-info">New</span></td></tr>
-                                                <tr><td>Jane Smith</td><td>jane@example.com</td><td><span class="badge bg-warning text-dark">Contacted</span></td></tr>
-                                                <tr><td>Mike Ross</td><td>mike@example.com</td><td><span class="badge bg-success">Qualified</span></td></tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Nilesh Patil</td>
+                                                    <td>nilesh.p@gmail.com</td>
+                                                    <td>Sales Manager</td>
+                                                    <td><span className="badge bg-info">New</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Isha Rane</td>
+                                                    <td>isha22@gmail.com</td>
+                                                    <td>Marketing Specialist</td>
+                                                    <td><span className="badge bg-warning text-dark">Contacted</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Aarti Gokhale</td>
+                                                    <td>aarti@gmail.com</td>
+                                                    <td>Business Analyst</td>
+                                                    <td><span className="badge bg-success">Qualified</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Tanishq More</td>
+                                                    <td>tanishq@gmail.com</td>
+                                                    <td>Technical Support</td>
+                                                    <td><span className="badge bg-danger">Lost</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>Rajat Sawant</td>
+                                                    <td>rajat.sawant@gmail.com</td>
+                                                    <td>IT Technician</td>
+                                                    <td><span className="badge bg-primary">Follow-up</span></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
+
+                    {/* <!-- Recent Activities and Top Customers --> */}
+                    <div class="row g-4 mb-4">
                         <div class="col-md-6">
                             <div class="card shadow-sm h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Top Customers</h5>
                                     <div class="table-responsive" style={{ maxHeight: '300px' }}>
                                         <table class="table table-hover table-sm">
-                                            <thead><tr><th>Name</th><th>Revenue</th><th>Location</th></tr></thead>
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Address</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
-                                                <tr><td>Acme Corp</td><td>₹ 8,000</td><td>Kolhapur</td></tr>
-                                                <tr><td>Beta LLC</td><td>₹ 6,500</td><td>Pune</td></tr>
-                                                <tr><td>Delta Inc.</td><td>₹ 5,200</td><td>Mumbai</td></tr>
+                                                {
+                                                    customerData.map((customer, index) => (
+                                                        <tr key={index}>
+                                                            <td>{customer.name}</td>
+                                                            <td>{customer.email}</td>
+                                                            <td>{customer.address}</td>
+                                                        </tr>
+                                                    ))
+                                                }
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* <!-- Meetings and Activities --> */}
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Upcoming Meetings</h5>
-                                    <ul class="list-group">
-                                        <li class="list-group-item"><i class="fas fa-calendar-alt me-2 text-primary"></i>Team Sync – July 11, 10:00 AM</li>
-                                        <li class="list-group-item"><i class="fas fa-calendar-check me-2 text-success"></i>Client Demo – July 12, 2:00 PM</li>
-                                        <li class="list-group-item"><i class="fas fa-user-clock me-2 text-warning"></i>Follow-up with Jane – July 13, 1:30 PM</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="col-md-6">
                             <div class="card shadow-sm h-100">
@@ -135,10 +202,26 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
 
-                    {/* <!-- Tasks and Performance --> */}
-                    <div class="row mb-4">
+                    {/* <!-- Meetings and Tasks --> */}
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Upcoming Meetings</h5>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Team Sync – July 11, 10:00 AM</li>
+                                        <li class="list-group-item">Customer Demo – July 12, 2:00 PM</li>
+                                        <li class="list-group-item">Follow-up with Jane – July 13, 1:30 PM</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-md-6">
                             <div class="card shadow-sm h-100">
                                 <div class="card-body">
@@ -160,7 +243,10 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
+                    </div>
 
+                    {/* <!-- Performance and notifications --> */}
+                    <div class="row g-4 mb-4">
                         <div class="col-md-6">
                             <div class="card shadow-sm h-100">
                                 <div class="card-body">
@@ -179,78 +265,25 @@ function Dashboard() {
                             </div>
                         </div>
 
-
-                        <div class="row mt-4">
-                            <div class="col-md-12">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Employee Performance</h5>
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>Employee</th>
-                                                    <th>Leads Generated</th>
-                                                    <th>Closed Deals</th>
-                                                    <th>Response Time</th>
-                                                    <th>Customer Rating</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Amit Sharma</td>
-                                                    <td>45</td>
-                                                    <td>18</td>
-                                                    <td>2 hrs</td>
-                                                    <td>4.7 ⭐</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Raj Patel</td>
-                                                    <td>39</td>
-                                                    <td>15</td>
-                                                    <td>3 hrs</td>
-                                                    <td>4.5 ⭐</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Ravi Singh</td>
-                                                    <td>51</td>
-                                                    <td>22</td>
-                                                    <td>1.5 hrs</td>
-                                                    <td>4.8 ⭐</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm" style={{ height: '100%' }}>
+                                <div class="card-body">
+                                    <h5 class="card-title">Notifications</h5>
+                                    <ul class="list-group list-unstyled">
+                                        <li class="list-group-item">&bull; New message from Sarah Lee</li>
+                                        <li class="list-group-item">&bull; Follow-up task due today</li>
+                                        <li class="list-group-item">&bull; Lead converted: Delta Inc.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Notifications</h5>
-                                        <ul class="list-group">
-                                            <li class="list-group-item"><i class="fas fa-envelope text-primary me-2"></i>New message from Sarah Lee</li>
-                                            <li class="list-group-item"><i class="fas fa-bell text-warning me-2"></i>Follow-up task due today</li>
-                                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Lead converted: Delta Inc.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
                     </div>
+
                 </div>
+
             </main>
         </>
     )
 }
 
-export default Dashboard
+export default Dashboard;

@@ -12,10 +12,7 @@ import Employees from "./components/Employees";
 import Issues from "./components/Issues";
 import AddIssue from "./components/AddIssue";
 import IssueReviews from "./components/IssueReviews";
-import Quotation from "./components/Quotation";
-import QuotationDetails from "./components/QuotationDetails";
-import AmcContracts from "./components/AmcContracts";
-import AmcContractsDetails from "./components/AmcContractsDetails";
+
 
 
 
@@ -35,11 +32,9 @@ function App() {
             <Route path={'/employees'} element={<Employees />}></Route>
             <Route path={'/issues'} element={<Issues />}></Route>
             <Route path={'/customerissues'} element={<AddIssue />}></Route>
+            <Route path={'/customerissues/:id'} element={<AddIssue />}></Route>
             <Route path={'/issue-review'} element={<IssueReviews />}></Route>
-            <Route path={'/quotations'} element={<Quotation />}></Route>
-            <Route path={'/quotation-details'} element={<QuotationDetails />}></Route>
-            <Route path={'/amc-contracts'} element={<AmcContracts />}></Route>
-            <Route path={'/amc-contracts-details'} element={<AmcContractsDetails />}></Route>
+            
 
 
             {/* <Route path={'/admin/addproduct'} element={<AddProduct />}></Route> 

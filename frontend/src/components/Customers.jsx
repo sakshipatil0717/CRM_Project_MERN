@@ -210,8 +210,19 @@ function Customers() {
                                                 <td class="py-3">{eachData.mobile}</td>
                                                 <td class="py-3">{eachData.alternativeMobile}</td>
                                                 <td class="">
-                                                    <button onClick={() => handleUpdate(eachData._id)} class="btn btn-primary me-2 btn-sm"><i class="fa-solid fa-pencil"></i></button>
-                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    {/* <button onClick={() => handleUpdate(eachData._id)} class="btn btn-primary me-2 btn-sm"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button> */}
+
+
+                                                    <div className="d-flex flex-wrap gap-2">
+                                                        <button onClick={() => handleUpdate(eachData._id)} className="btn btn-primary  btn-sm">
+                                                            <i className="fa-solid fa-pencil"></i>
+                                                        </button>
+                                                        <button onClick={() => handleDelete(eachData._id)} className="btn btn-danger btn-sm" >
+                                                            <i className="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         )

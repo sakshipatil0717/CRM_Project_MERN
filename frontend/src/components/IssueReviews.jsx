@@ -19,7 +19,7 @@ function IssueReviews() {
                     </nav>
                 </div>
 
-                <div class="container mt-5">
+                <div class="container mt-4">
                     <div class="card p-3 shadow-sm table-responsive">
                         <table class="table table text-center">
                             <thead class="bg-light">
@@ -53,17 +53,26 @@ function IssueReviews() {
                                         )
                                     })
                                 } */}
-
                             </tbody>
                         </table>
                     </div>
                 </div>
+
+                <div className="d-flex justify-content-center align-items-center mt-5" style={{ minHeight: "30vh" }}>
+                    <h4 className="text-danger">No Reviews Found</h4>
+                </div>
+
             </main>
-            <div class="d-flex justify-content-center align-item-center" style={{ height: "50vh" }}>
-                <h3 className='text-danger'>No Review Found</h3>
-            </div>
+         
         </>
     )
 }
 
 export default IssueReviews
+
+
+
+
+
+
+

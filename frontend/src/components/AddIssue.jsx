@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function AddIssue() {
+
+    const navigate = useNavigate();
 
     // Fetch Customers
     const [customerData, setCustomerData] = useState([]);
@@ -63,7 +66,7 @@ function AddIssue() {
         } catch (error) {
             console.error("Error adding CustomerIssue:", error);
         }
-
+        navigate("/issues"); // Redirect to Issues page after adding
     }
 
 
@@ -75,8 +78,8 @@ function AddIssue() {
                     <h1>Issues Data</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="">Home</a></li>
-                            <li class="breadcrumb-item"><a href="">Customers Issues</a></li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/issues">Customers Issues</a></li>
                             <li class="breadcrumb-item active">Issues Data</li>
                         </ol>
                     </nav>
@@ -86,7 +89,7 @@ function AddIssue() {
                 <div class="container mt-4">
                     <div class="card p-5 shadow-sm">
                         <form>
-                             {/* <!-- Customer & Employee in one row --> */}
+                            {/* <!-- Customer & Employee in one row --> */}
                             <div class="row mb-6">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold">Customer <span className='text-danger'>*</span></label>
@@ -113,7 +116,7 @@ function AddIssue() {
                                             employeeData.map((employee) => {
                                                 return (
                                                     <option key={employee._id} value={employee._id}>
-                                                        {employee.name}
+                                                        {employee.name}  ({employee.position})
                                                     </option>
                                                 )
                                             })
@@ -125,7 +128,7 @@ function AddIssue() {
                             </div>
 
 
-                            
+
                             {/* <!-- Issue Textarea --> */}
                             <div class="row mb-3 mt-4">
                                 <div class="col-md-12">
@@ -133,7 +136,7 @@ function AddIssue() {
                                     <textarea class="form-control" id="issue" name='issue' value={issue.issue} onChange={handleChangeIssue} rows="3" required></textarea>
                                 </div>
                             </div>
-                            
+
 
                             {/* <!-- Issue Date & Close Date in one row --> */}
                             <div class="row mb-6 mt-4">

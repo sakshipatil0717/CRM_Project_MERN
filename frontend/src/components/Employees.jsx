@@ -47,56 +47,56 @@ function Employees() {
         //     console.log(res.data.data);
         //   })
 
-    if (!id) {
-        try {
-            await axios.post(process.env.REACT_APP_BASEURL + "/employees", employee);
-            alert("Employee added successfully!");
-            setEmployee({ name: "", position: "", email: "", mobile: "", password: "" }); // Clear form
-            loadData();  // Reload data after adding
-        } catch (error) {
-            console.error("Error adding Employee:", error);
+        if (!id) {
+            try {
+                await axios.post(process.env.REACT_APP_BASEURL + "/employees", employee);
+                alert("Employee added successfully!");
+                setEmployee({ name: "", position: "", email: "", mobile: "", password: "" }); // Clear form
+                loadData();  // Reload data after adding
+            } catch (error) {
+                console.error("Error adding Employee:", error);
+            }
         }
-    } 
-    else {
-        try {
-            await axios.put(process.env.REACT_APP_BASEURL + "/employees/" + id, employee);
-            alert("Employee updated successfully!");
-            setId(null);
-            setEmployee({ name: "", position: "", email: "", mobile: "", password: "" }); // Clear form
-            loadData(); // Reload data after update
-        } catch (error) {
-            console.error("Error updating Employee:", error);
+        else {
+            try {
+                await axios.put(process.env.REACT_APP_BASEURL + "/employees/" + id, employee);
+                alert("Employee updated successfully!");
+                setId(null);
+                setEmployee({ name: "", position: "", email: "", mobile: "", password: "" }); // Clear form
+                loadData(); // Reload data after update
+            } catch (error) {
+                console.error("Error updating Employee:", error);
+            }
         }
-    }
-};
+    };
 
-// Handle Input Change
-const handleChangeEmployeeData = (e) => {
-    //console.log(e.target.value)
-    setEmployee({ ...employee, [e.target.name]: e.target.value });
-};
+    // Handle Input Change
+    const handleChangeEmployeeData = (e) => {
+        //console.log(e.target.value)
+        setEmployee({ ...employee, [e.target.name]: e.target.value });
+    };
 
 
-// -------------------UPDATE---------------------
-function handleUpdate(id) {
-    axios.get(process.env.REACT_APP_BASEURL + "/employees/" + id)
-        .then((res) => {
-            console.log(res.data.data);
+    // -------------------UPDATE---------------------
+    function handleUpdate(id) {
+        axios.get(process.env.REACT_APP_BASEURL + "/employees/" + id)
+            .then((res) => {
+                console.log(res.data.data);
 
-            setEmployee({
-                name: res.data.data.name,      
-                position: res.data.data.position,
-                email: res.data.data.email,
-                mobile: res.data.data.mobile,
-                password: res.data.data.password
+                setEmployee({
+                    name: res.data.data.name,
+                    position: res.data.data.position,
+                    email: res.data.data.email,
+                    mobile: res.data.data.mobile,
+                    password: res.data.data.password
+                });
+
+                setId(id);  // Store ID to switch to update mode
+            })
+            .catch((error) => {
+                console.error("Error fetching Employee data:", error);
             });
-
-            setId(id);  // Store ID to switch to update mode
-        })
-        .catch((error) => {
-            console.error("Error fetching Employee data:", error);
-        });
-};
+    };
 
 
 
@@ -137,7 +137,7 @@ function handleUpdate(id) {
                     <h1>Employees</h1>
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href=" ">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item"><a href="">Forms</a></li>
                             <li class="breadcrumb-item active">Employees</li>
                         </ol>
@@ -207,8 +207,20 @@ function handleUpdate(id) {
                                                 <td class="py-3">{eachData.mobile}</td>
                                                 <td class="py-3">{eachData.password}</td>
                                                 <td class="py-3">
-                                                    <button onClick={() => handleUpdate(eachData._id)} class="btn btn-primary me-2  btn-sm"><i class="fa-solid fa-pencil"></i></button>
-                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                    {/* <button onClick={() => handleUpdate(eachData._id)} class="btn btn-primary me-2  btn-sm"><i class="fa-solid fa-pencil"></i></button>
+                                                    <button onClick={() => handleDelete(eachData._id)} class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button> */}
+
+
+                                                    <div className="d-flex flex-wrap gap-2">
+                                                        <button onClick={() => handleUpdate(eachData._id)} className="btn btn-primary  btn-sm">
+                                                            <i className="fa-solid fa-pencil"></i>
+                                                        </button>
+                                                        <button onClick={() => handleDelete(eachData._id)} className="btn btn-danger btn-sm" >
+                                                            <i className="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </div>
+
+
                                                 </td>
                                             </tr>
                                         )
